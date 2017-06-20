@@ -218,7 +218,8 @@ public class Base64Codec extends BinaryCodec {
 		if (lineLength > 0) {
 			resultLength += (4 * maxGrouping) == lineLength ? 0 : (4*maxGrouping / lineLength);
 		}
-		byte[] result = new byte[doPadding ? resultLength : resultLength - maxPadding];
+//		byte[] result = new byte[doPadding ? resultLength : resultLength - (remainderGrouping != 0 ? maxPadding : remainderGrouping)];
+		byte[] result = new byte[resultLength - (doPadding ? maxPadding : 0)];
 		
 		for (c = 0; c < (3*maxGrouping); c+= 3) {
 			if (lineLength > 0 && c > 0 && (c * 4) % lineLength == 0) {
@@ -277,25 +278,25 @@ public class Base64Codec extends BinaryCodec {
 		return false;
 	}
 	
-	public String encode(String s, String charset) throws EncodingException {
-		try {
-//			return new String(new Base64Codec().encode(s.getBytes(charset)));
-			return new String(encode(s.getBytes(charset)));
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			throw new EncodingException(e);
-		}
-	}
-	
-	public String decode(String s, String charset) throws DecodingException {
-		try {
-//			return new String(new Base64Codec().decode(s.getBytes()), charset);
-			return new String(decode(s.getBytes()), charset);
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			throw new DecodingException(e);
-		}
-	}
+//	public String encode(String s, String charset) throws EncodingException {
+//		try {
+////			return new String(new Base64Codec().encode(s.getBytes(charset)));
+//			return new String(encode(s.getBytes(charset)));
+//		} catch (UnsupportedEncodingException e) {
+//			// TODO Auto-generated catch block
+//			throw new EncodingException(e);
+//		}
+//	}
+//	
+//	public String decode(String s, String charset) throws DecodingException {
+//		try {
+////			return new String(new Base64Codec().decode(s.getBytes()), charset);
+//			return new String(decode(s.getBytes()), charset);
+//		} catch (UnsupportedEncodingException e) {
+//			// TODO Auto-generated catch block
+//			throw new DecodingException(e);
+//		}
+//	}
 	
 //	public static BinaryEncoder getEncoder() {
 //		return new Base64Codec(false, 0, null, true);

@@ -175,13 +175,23 @@ public class Base32Codec extends BinaryCodec {
 		return result;
 	}
 	
-	public static String encode(String s) throws EncodingException {
-		return new String(new Base32Codec().encode(s.getBytes()));
-	}
-	
-	public static String decode(String s) throws DecodingException {
-		return new String(new Base32Codec().decode(s.getBytes()));
-	}
+//	public static String encode(String s, String charset) throws EncodingException {
+//		try {
+//			return new String(new Base32Codec().encode(s.getBytes(charset)));
+//		} catch (UnsupportedEncodingException e) {
+//			// TODO Auto-generated catch block
+//			throw new EncodingException(e);
+//		}
+//	}
+//	
+//	public static String decode(String s, String charset) throws DecodingException {
+//		try {
+//			return new String(new Base32Codec().decode(s.getBytes(charset)));
+//		} catch (UnsupportedEncodingException e) {
+//			// TODO Auto-generated catch block
+//			throw new DecodingException(e);
+//		}
+//	}
 	
 //	public static void main(String[] args) {
 //		
