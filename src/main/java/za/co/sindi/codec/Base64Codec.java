@@ -178,7 +178,7 @@ public class Base64Codec extends BinaryCodec {
 			throw new DecodingException("Inconsistent padding found (padding length = " + noPadding + ").");
 		}
 		
-		byte[] result = new byte[3*(maxGrouping - noPadding) - (length / 76)];
+		byte[] result = new byte[3*(maxGrouping - noPadding) - (lineLength > 0 ? (length / lineLength) : 0)];
 		
 		for (c = 0; c < (4*(maxGrouping - (noPadding > 0 ? 1 : 0))); c+= 4) {
 			while (decodingTable[data[c]] == -1) {
