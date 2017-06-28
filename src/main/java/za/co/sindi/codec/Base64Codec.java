@@ -163,23 +163,36 @@ public class Base64Codec extends BinaryCodec {
 		}
 				
 		int length = data.length;
-		if (doPadding && length % 4 != 0) {
-			throw new DecodingException("Data must be divisible by 4.");
-		}
-		
-		int c, cursor = 0;
-		int maxGrouping = length/4;
+		int remainderGrouping = length % 4;
 		int noPadding = 0;
-		while (data[length - noPadding - 1] == PADDING) {
-			noPadding++;
+//		int resultLength = 0;
+		if (doPadding) {
+			if (remainderGrouping != 0) {
+				throw new DecodingException("Data must be divisible by 4.");
+			}
+			
+			while (data[length - noPadding - 1] == PADDING) {
+				noPadding++;
+			}
+			
+//			resultLength = 3*(maxGrouping) - noPadding;
+		} else {
+			if (remainderGrouping != 0) {
+				noPadding = 4 - remainderGrouping;
+			}
+			length = data.length + noPadding;
+//			resultLength = length - (maxGrouping + (remainderGrouping == 0 ? 0 : 1));
 		}
 		
 		if (noPadding > 2) {
 			throw new DecodingException("Inconsistent padding found (padding length = " + noPadding + ").");
 		}
 		
-		byte[] result = new byte[3*(maxGrouping - noPadding) - (lineLength > 0 ? (length / lineLength) : 0)];
+		int maxGrouping = length/4;
+		byte[] result = new byte[3*(maxGrouping) - noPadding - (lineLength > 0 ? (length / lineLength) : 0)];
+//		byte[] result = new byte[resultLength - (lineLength > 0 ? (length / lineLength) : 0)];
 		
+		int c, cursor = 0;
 		for (c = 0; c < (4*(maxGrouping - (noPadding > 0 ? 1 : 0))); c+= 4) {
 			while (decodingTable[data[c]] == -1) {
 				c++;
@@ -214,12 +227,22 @@ public class Base64Codec extends BinaryCodec {
 		int maxGrouping = length / 3;
 		int remainderGrouping = length % 3;
 		int maxPadding = 3 - remainderGrouping;
-		int resultLength = remainderGrouping != 0 ? 4*(maxGrouping + 1) : (4 * maxGrouping);
-		if (lineLength > 0) {
-			resultLength += (4 * maxGrouping) == lineLength ? 0 : (4*maxGrouping / lineLength);
+//		int resultLength = remainderGrouping != 0 ? 4*(maxGrouping + 1) : (4 * maxGrouping);
+//		if (lineLength > 0) {
+//			resultLength += (4 * maxGrouping) == lineLength ? 0 : (4*maxGrouping / lineLength);
+//		}
+////		byte[] result = new byte[doPadding ? resultLength : resultLength - (remainderGrouping != 0 ? maxPadding : remainderGrouping)];
+//		byte[] result = new byte[resultLength - (doPadding ? maxPadding : 0)];
+		int resultLength = 0;
+		if (doPadding) {
+			resultLength = 4*(maxGrouping + 1);
+		} else {
+			resultLength = length + (maxGrouping + (remainderGrouping == 0 ? 0 :1));
 		}
-//		byte[] result = new byte[doPadding ? resultLength : resultLength - (remainderGrouping != 0 ? maxPadding : remainderGrouping)];
-		byte[] result = new byte[resultLength - (doPadding ? maxPadding : 0)];
+		if (lineLength > 0) {
+			resultLength += (resultLength - 1) / lineLength * lineSeparator.length;
+		}
+		byte[] result = new byte[resultLength];
 		
 		for (c = 0; c < (3*maxGrouping); c+= 3) {
 			if (lineLength > 0 && c > 0 && (c * 4) % lineLength == 0) {
