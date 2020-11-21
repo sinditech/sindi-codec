@@ -94,68 +94,10 @@ public class Base64Codec extends BinaryCodec {
 		this.doPadding = doPadding;
 	}
 
-//	/**
-//	 * 
-//	 */
-//	public Base64Codec() {
-//		this(false);
-//		// TODO Auto-generated constructor stub
-//	}
-//	
-//	/**
-//	 * @param lineLength
-//	 */
-//	public Base64Codec(int lineLength) {
-//		this(lineLength, NEWLINE);
-//	}
-//
-//	/**
-//	 * RFC 2045 Base 64 encoding
-//	 * 
-//	 * @param lineLength
-//	 * @param lineSeparator
-//	 */
-//	public Base64Codec(int lineLength, byte[] lineSeparator) {
-//		this(false);
-//		if (lineLength > 0 && lineSeparator == null) {
-//			throw new IllegalArgumentException("No line separators was provided.");
-//		}
-//		
-//		if (lineLength > 0 && containsAlphabetOrPad(lineSeparator)) {
-//			try {
-//				throw new IllegalArgumentException(new String(lineSeparator, "UTF-8") + " contains Base 64 characters.");
-//			} catch (UnsupportedEncodingException e) {
-//				// TODO Auto-generated catch block
-////				e.printStackTrace(); //THIS SHOULD NEVER HAPPEN...
-//			}
-//		}
-//		
-//		this.lineLength = lineLength;
-//		this.lineSeparator = lineSeparator;
-//	}
-//
-//	/**
-//	 * 
-//	 */
-//	public Base64Codec(boolean urlSafe) {
-//		super();
-//		// TODO Auto-generated constructor stub
-//		if (urlSafe) {
-//			encodingTable = URL_SAFE_BASE_64_CHARACTERS;
-//			decodingTable = URL_SAFE_BASE_64_DECODE_INDEX;
-//		} else {
-//			encodingTable = STANDARD_BASE_64_CHARACTERS;
-//			decodingTable = STANDARD_BASE_64_DECODE_INDEX;
-//		}
-//	}
-	
 	public Base64Codec withoutPadding() {
 		return new Base64Codec(urlSafe, lineLength, lineSeparator, false);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.neurologic.codec.Decoder#decode(byte[])
-	 */
 	public byte[] decode(byte[] data) throws DecodingException {
 		// TODO Auto-generated method stub
 		if (data == null) {
@@ -213,9 +155,6 @@ public class Base64Codec extends BinaryCodec {
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.neurologic.codec.Encoder#encode(byte[])
-	 */
 	public byte[] encode(byte[] data) throws EncodingException {
 		// TODO Auto-generated method stub
 		if (data == null) {
@@ -237,7 +176,7 @@ public class Base64Codec extends BinaryCodec {
 		if (doPadding) {
 			resultLength = 4*(maxGrouping + 1);
 		} else {
-			resultLength = length + (maxGrouping + (remainderGrouping == 0 ? 0 :1));
+			resultLength = length + (maxGrouping + (remainderGrouping == 0 ? 0 : 1));
 		}
 		if (lineLength > 0) {
 			resultLength += (resultLength - 1) / lineLength * lineSeparator.length;
@@ -301,50 +240,6 @@ public class Base64Codec extends BinaryCodec {
 		return false;
 	}
 	
-//	public String encode(String s, String charset) throws EncodingException {
-//		try {
-////			return new String(new Base64Codec().encode(s.getBytes(charset)));
-//			return new String(encode(s.getBytes(charset)));
-//		} catch (UnsupportedEncodingException e) {
-//			// TODO Auto-generated catch block
-//			throw new EncodingException(e);
-//		}
-//	}
-//	
-//	public String decode(String s, String charset) throws DecodingException {
-//		try {
-////			return new String(new Base64Codec().decode(s.getBytes()), charset);
-//			return new String(decode(s.getBytes()), charset);
-//		} catch (UnsupportedEncodingException e) {
-//			// TODO Auto-generated catch block
-//			throw new DecodingException(e);
-//		}
-//	}
-	
-//	public static BinaryEncoder getEncoder() {
-//		return new Base64Codec(false, 0, null, true);
-//	}
-//	
-//	public static BinaryDecoder getDecoder() {
-//		return new Base64Codec(false, 0, null, true);
-//	}
-//	
-//	public static BinaryEncoder getUrlSafeEncoder() {
-//		return new Base64Codec(true, 0, null, true);
-//	}
-//	
-//	public static BinaryDecoder getUrlSafeDecoder() {
-//		return new Base64Codec(true, 0, null, true);
-//	}
-//	
-//	public static BinaryEncoder getMimeEncoder() {
-//		return new Base64Codec(true, 76, NEWLINE, true);
-//	}
-//	
-//	public static BinaryDecoder getMimeDecoder() {
-//		return new Base64Codec(true, 76, NEWLINE, true);
-//	}
-	
 	public static Base64Codec getBase64Codec() {
 		return new Base64Codec(false, 0, null, true);
 	}
@@ -356,16 +251,4 @@ public class Base64Codec extends BinaryCodec {
 	public static Base64Codec getBase64MimeCodec() {
 		return new Base64Codec(true, 76, NEWLINE, true);
 	}
-	
-//	public static void main(String[] args) {
-//		try {
-//			System.out.println(encode("123456789", "UTF-8") + ">");
-////			System.out.println(encode("abcd", "UTF-8") + ">");
-//			System.out.println("e881d08f89856ff96bee2e12d44567ac6d50b9e1ca891472d36dfd4c:".length());
-//			System.out.println(Base64Codec.encode("e881d08f89856ff96bee2e12d44567ac6d50b9e1ca891472d36dfd4c:", "UTF-8") + ">");
-//		} catch (EncodingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
 }

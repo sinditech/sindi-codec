@@ -31,9 +31,6 @@ public class Base32Codec extends BinaryCodec {
 	
 	private static final byte PADDING = '=';
 	
-	/* (non-Javadoc)
-	 * @see com.neurologic.codec.Decoder#decode(byte[])
-	 */
 	public byte[] decode(byte[] data) throws DecodingException {
 		// TODO Auto-generated method stub
 		if (data == null) {
@@ -88,9 +85,6 @@ public class Base32Codec extends BinaryCodec {
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.neurologic.codec.Encoder#encode(byte[])
-	 */
 	public byte[] encode(byte[] data) throws EncodingException {
 		// TODO Auto-generated method stub
 		if (data == null) {
@@ -174,53 +168,4 @@ public class Base32Codec extends BinaryCodec {
 		
 		return result;
 	}
-	
-//	public static String encode(String s, String charset) throws EncodingException {
-//		try {
-//			return new String(new Base32Codec().encode(s.getBytes(charset)));
-//		} catch (UnsupportedEncodingException e) {
-//			// TODO Auto-generated catch block
-//			throw new EncodingException(e);
-//		}
-//	}
-//	
-//	public static String decode(String s, String charset) throws DecodingException {
-//		try {
-//			return new String(new Base32Codec().decode(s.getBytes(charset)));
-//		} catch (UnsupportedEncodingException e) {
-//			// TODO Auto-generated catch block
-//			throw new DecodingException(e);
-//		}
-//	}
-	
-//	public static void main(String[] args) {
-//		
-//		try {
-////			String s = "Man is distinguished, not only by his reason, but by this singular passion from other animals, which is a lust of the mind, that by a perseverance of delight in the continued and indefatigable generation of knowledge, exceeds the short vehemence of any carnal pleasure.";
-//			String s = "A";
-//			System.out.println("Original length: " + s.length());
-//			Encoder encoder = new Base32Codec();
-//			
-//			byte[] enc = encoder.encode(s.getBytes());
-//			System.out.println(enc.length);
-//			String encStr = new String(enc);
-//			System.out.println(encStr.length());
-//			System.out.println(encStr);
-//			
-//			//Decoder
-//			Decoder decoder = new Base32Codec();
-//			byte[] dec = decoder.decode(enc);
-//			System.out.println(dec.length);
-//			String decStr = new String(dec);
-//			System.out.println(decStr.length());
-//			System.out.println(decStr);
-//			
-//		} catch (EncodingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (DecodingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
 }

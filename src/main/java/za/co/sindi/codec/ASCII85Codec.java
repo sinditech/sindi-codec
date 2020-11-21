@@ -46,9 +46,6 @@ public class ASCII85Codec extends BinaryCodec {
 		this.encloseEncoding = encloseEncoding;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.neurologic.codec.Decoder#decode(byte[])
-	 */
 	public byte[] decode(byte[] data) throws DecodingException {
 		// TODO Auto-generated method stub
 		if (data == null) {
@@ -123,9 +120,6 @@ public class ASCII85Codec extends BinaryCodec {
 		return baos.toByteArray();
 	}
 
-	/* (non-Javadoc)
-	 * @see com.neurologic.codec.Encoder#encode(byte[])
-	 */
 	public byte[] encode(byte[] data) throws EncodingException {
 		// TODO Auto-generated method stub
 		if (data == null) {
@@ -195,33 +189,4 @@ public class ASCII85Codec extends BinaryCodec {
 		
 		return result;
 	}
-	
-//	public static void main(String[] args) {
-//		
-//		try {
-//			String s = "Man is distinguished, not only by his reason, but by this singular passion from other animals, which is a lust of the mind, that by a perseverance of delight in the continued and indefatigable generation of knowledge, exceeds the short vehemence of any carnal pleasure.";
-//			Encoder encoder = new Ascii85Codec();
-//			
-//			byte[] enc = encoder.encode(s.getBytes());
-//			System.out.println(enc.length);
-//			String encStr = new String(enc);
-//			System.out.println(encStr.length());
-//			System.out.println(encStr);
-//			
-//			//Decoder
-//			Decoder decoder = new Ascii85Codec();
-//			byte[] dec = decoder.decode(enc);
-//			System.out.println(dec.length);
-//			String decStr = new String(dec);
-//			System.out.println(decStr.length());
-//			System.out.println(decStr);
-//			
-//		} catch (EncodingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (DecodingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
 }

@@ -52,9 +52,6 @@ public class QuotedPrintableCodec extends CharacterCodec {
 		this.encodeCrLf = encodeCrLf;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.neurologic.codec.Decoder#decode(char[])
-	 */
 	public char[] decode(char[] data) throws DecodingException {
 		// TODO Auto-generated method stub
 		if (data == null) {
@@ -95,9 +92,6 @@ public class QuotedPrintableCodec extends CharacterCodec {
 		return false;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.neurologic.codec.Encoder#encode(char[])
-	 */
 	public char[] encode(char[] data) throws EncodingException {
 		// TODO Auto-generated method stub
 		if (data == null) {
@@ -159,14 +153,6 @@ public class QuotedPrintableCodec extends CharacterCodec {
 		caw.write(ESPACE_CHARACTER);
 		caw.write(hex1);
 		caw.write(hex2);
-//		StringBuffer sb = new StringBuffer();
-//		sb.append(Integer.toHexString(b >> 4));
-//		sb.append(Integer.toHexString(b & 0x0F));
-//		
-//		baos.write(ESPACE_CHARACTER);
-//		for (char b1 : sb.toString().toUpperCase().getBytes()) {
-//			baos.write(b1);
-//		}
 	}
 	
 	public static String decode(String s) throws DecodingException {
