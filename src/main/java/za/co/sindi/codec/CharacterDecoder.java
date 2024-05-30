@@ -3,14 +3,12 @@
  */
 package za.co.sindi.codec;
 
-import za.co.sindi.codec.exception.DecodingException;
-
 /**
  * @author Bienfait Sindi
  * @since 25 February 2015
  *
  */
-public interface CharacterDecoder extends Decoder {
+public interface CharacterDecoder extends Decoder<char[]> {
 
-	public char[] decode(char[] data) throws DecodingException;
+//	public char[] decode(char[] data) throws DecodingException;
 }

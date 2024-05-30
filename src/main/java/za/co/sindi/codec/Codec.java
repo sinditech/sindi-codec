@@ -8,6 +8,6 @@ package za.co.sindi.codec;
  * @since 24 February 2015
  *
  */
-public interface Codec extends Encoder, Decoder {
+public interface Codec<T> extends Encoder<T>, Decoder<T> {
 
 }

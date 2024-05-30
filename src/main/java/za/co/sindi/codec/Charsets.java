@@ -10,9 +10,9 @@ import java.nio.charset.StandardCharsets;
  * @since 17 June 2017
  *
  */
-public final class Strings {
+public final class Charsets {
 
-	private Strings() {
+	private Charsets() {
 		throw new AssertionError("Private Constructor.");
 	}
 	

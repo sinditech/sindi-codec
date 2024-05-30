@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>za.co.sindi</groupId>
 	<artifactId>sindi-codec</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>Sindi Codec</name>
 	<description>Library for all codec.</description>
 
@@ -18,6 +18,9 @@
 			<id>buhake</id>
 			<name>Buhake Sindi</name>
 			<email>buhake.sindi@sindi.co.za</email>
+			<roles>
+				<role>PROJECT LEAD</role>
+			</roles>
 		</developer>
 	</developers>
 
@@ -26,7 +29,7 @@
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-api</artifactId>
-			<version>5.6.0</version>
+			<version>5.10.0</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -37,7 +40,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
+				<version>3.11.0</version>
 				<configuration>
 					<source>${jdk.version}</source>
 					<target>${jdk.version}</target>
@@ -47,7 +50,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 		        <artifactId>maven-source-plugin</artifactId>
-		        <version>2.3</version>
+		        <version>3.3.0</version>
 		        <executions>
 		        	<execution>
 		        		<id>attach-sources</id>
@@ -61,7 +64,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 		        <artifactId>maven-javadoc-plugin</artifactId>
-		        <version>3.2.0</version>
+		        <version>3.5.0</version>
 		        <executions>
 		        	<execution>
 		        		<id>attach-javadocs</id>
@@ -74,6 +77,11 @@
 		                </configuration>
 		        	</execution>
 		        </executions>
+				<configuration>
+					<additionalOptions>
+						<additionalOption>-Xdoclint:none</additionalOption>
+					</additionalOptions>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

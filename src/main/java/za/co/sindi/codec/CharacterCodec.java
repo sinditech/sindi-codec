@@ -9,6 +9,6 @@ package za.co.sindi.codec;
  * @since 24 February 2015
  *
  */
-public abstract class CharacterCodec implements Codec, CharacterEncoder, CharacterDecoder {
+public abstract class CharacterCodec implements Codec<char[]>, CharacterEncoder, CharacterDecoder {
 	
 }

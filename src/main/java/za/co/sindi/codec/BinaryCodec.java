@@ -8,6 +8,6 @@ package za.co.sindi.codec;
  * @since 24 February 2015
  *
  */
-public abstract class BinaryCodec implements Codec, BinaryEncoder, BinaryDecoder {
+public abstract class BinaryCodec implements Codec<byte[]>, BinaryEncoder, BinaryDecoder {
 
 }
